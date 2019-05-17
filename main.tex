@@ -8,9 +8,7 @@
 \setbeamertemplate{caption}[numbered]
 \beamertemplatenavigationsymbolsempty
 
-
-
-\title{Presentation for Bachelor Thesis}
+\title{Cavity QED with cold particles}
 %\subtitle{This is a dummy subtitle}
 
 \author{Bernhard Gstrein}
@@ -20,33 +18,31 @@
 \maketitle
 
 \AtBeginSection[]{}
-\section{Introduction / Motivation (4 min)}
+\section{Introduction / Motivation}
 
 \begin{frame}
 \frametitle{Introduction}
 \begin{itemize}
-	\item Materials with certain properties $\rightarrow$ How do we find them?
+	\item Complex solid-state phenomena which we want to study \\
+	$\rightarrow$ difficult
 		\begin{itemize}
-			\item Na{\"i}ve approach: Dig for it in the earth
-			\item More systematic: Create them ourselves
+			\item Fast, lattice spacing small, structural defects, lattice vibrations
 		\end{itemize}
-	\item Need to understand underlying physical processes better $\rightarrow$ Simulate a solid
+	\item Make crystal ourselves
 		\begin{itemize}
-		\item Analog: Arrange atoms in lattice in the lab $\rightarrow$ Most promising for now
-		\item Digital: On a computer $\rightarrow$ Limitations of classical computers, quantum computers won't be there in the near future
+		\item Much slower, bigger lattice spacing, free of defects, fully controlable
 		\end{itemize}
+	\item How do we make atoms self-organize?
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Introduction}
-\begin{itemize}
-	\item Before any experiment: Theoretical model needed
-\end{itemize}
 Our goal:
 \begin{itemize}
-	\item Establish a theoretical model arranging atoms in a lattice
-	\item Check validity of that model with simulations
+	\item Establish a theoretical model arranging atoms in a lattice \\
+	$\rightarrow$ Hamiltonian
+	\item Investigate ground state of Hamiltonian with simulations
 \end{itemize}
 \end{frame}
 
@@ -63,7 +59,7 @@ Our goal:
   \end{frame}
 }
 
-\section{Setting up our model (9 min)}
+\section{Setting up our model}
 
 \begin{frame}
 \frametitle{Creating an artificial solid}
@@ -71,9 +67,10 @@ Our goal:
 \column[T]{0.5\textwidth}
 How do we make atoms arrange in a lattice pattern?
 \begin{itemize}
-	\item Two counter-propagating laser beams, $\omega_\text{l} << \omega_\text{a}$
-	\item Optical cavities: Coerce atoms into creating their own trapping potential
-	\item Light and atoms: Composite system $\psi_\text{total} = \psi_\text{light} \otimes \psi_\text{atom}$
+	\item Two counter-propagating laser beams
+	\item Force to low potential points if $\omega_\text{l} << \omega_\text{a}$
+	\item Optical cavities: Atom-light field interaction
+	\item Light and atoms: Composite system
 \end{itemize}
 \column[T]{0.5\textwidth}
 \begin{figure}
@@ -95,8 +92,7 @@ How do we make atoms arrange in a lattice pattern?
 \begin{frame}
 \frametitle{Cold atoms in cavities}
 \begin{itemize}
-	\item Problem: Motion of one atom affects cooling of another
-	\item Solution: Transversal pumping
+	\item Transversal pumping: Atoms create their own trapping potential
 \end{itemize}
 Paper: Collective Cooling and Self-Organization of Atoms in a Cavity \cite{domokos2002}
 \vspace{-2em}
@@ -120,14 +116,39 @@ Paper: Collective Cooling and Self-Organization of Atoms in a Cavity \cite{domok
 \frametitle{The Hamiltonians}
 Longitudinal pump ($\lambda / 2$-periodic):
 \begin{align}
-H_\text{long} = \frac{p^2}{2m} + V_\text{ext}(x) - \hbar \Delta_\text{c} a^\dagger a + \hbar \eta (a + a^\dagger) + \hbar U_0 \cos(kx)^2 a^\dagger a
+H_\text{long} = \underbrace{\frac{p^2}{2m}}_{\text{kin. E. atom}} - \underbrace{\hbar \omega_\text{c} a^\dagger a}_{\text{E. field}} + \underbrace{\hbar \eta (a + a^\dagger)}_{\text{pumping}} + \underbrace{\hbar U_0 \cos(kx)^2 a^\dagger a}_{\text{light field potential}}
 \end{align}Transversal pump ($\lambda$-periodic):
 \begin{align}
 \begin{split}
-H_\text{transv} = \frac{p^2}{2m} + V_\text{ext}(x) - \hbar \Delta_c a^\dagger a + \hbar \eta \cos(kx) (a + a^\dagger) + \\
- + \hbar U_0 \cos(kx)^2 a^\dagger a
+H_\text{transv} = \underbrace{\frac{p^2}{2m}}_{\text{kin. E. atom}} - \underbrace{\hbar \omega_\text{c} a^\dagger a}_{\text{E. field}} + \underbrace{\hbar \eta \cos(kx) (a + a^\dagger)}_{\text{pumping}} +\underbrace{\hbar U_0 \cos(kx)^2 a^\dagger a}_{\text{light field potential}}
 \end{split}
 \end{align}
+\end{frame}
+
+\begin{frame}
+\frametitle{Scattering of light}
+\begin{itemize}
+	\item Light is scattered differently when we pump longitudinally or transversally
+	\begin{itemize}
+		\item Longitudinal pump: $p = 2 n \hbar k$
+		\item Transversal pump: $p = n \hbar k$
+	\end{itemize}
+\end{itemize}
+\vspace{-2em}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth]{images/pump_long.eps}
+\caption{Longitudinal pump.}
+\end{figure}
+\column{0.5\textwidth}
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth]{images/pump_trans.eps}
+\caption{Transversal pump.}
+\end{figure}
+\end{columns}
 \end{frame}
 
 \begin{frame}
@@ -135,10 +156,11 @@ H_\text{transv} = \frac{p^2}{2m} + V_\text{ext}(x) - \hbar \Delta_c a^\dagger a 
 When we do simulations we obtain a superposition of two symmetric states
 \begin{columns}
 \column{0.5\textwidth}
+\vspace*{-4mm}
 \begin{figure}
 \centering
-\includegraphics[width=1\textwidth]{images/lattice_drawing.eps}
-\vspace*{-10mm}
+\includegraphics[width=.5\textwidth]{images/lattice_drawing_orange.eps}
+\vspace*{-2mm}
 \caption{Lattice.}
 \end{figure}
 \column{0.5\textwidth}
@@ -152,7 +174,29 @@ When we do simulations we obtain a superposition of two symmetric states
 \end{frame}
 
 \begin{frame}
-\frametitle{Our expectations}
+\frametitle{Transversal pump: Superposition}
+When we do simulations we obtain a superposition of two symmetric states
+\begin{columns}
+\column{0.5\textwidth}
+\vspace*{-4mm}
+\begin{figure}
+\centering
+\includegraphics[width=.5\textwidth]{images/lattice_drawing_blue.eps}
+\vspace*{-2mm}
+\caption{Lattice.}
+\end{figure}
+\column{0.5\textwidth}
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth]{images/density_superposition.pdf}
+\vspace*{-10mm}
+\caption{Wave function densities.}
+\end{figure}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Transversal pump: Phase transition}
 Paper: Self-organization of a Bose-Einstein condensate in an optical cavity \cite{Nagy2008}
 \begin{columns}
 \column{0.5\textwidth}
@@ -174,23 +218,26 @@ Paper: Self-organization of a Bose-Einstein condensate in an optical cavity \cit
 \frametitle{Our expectations}
 \begin{itemize}
 	\item Atoms are localized in "valleys" of optical potential
-	\item Momenta:
+	\item Longitudinal pumping:
 		\begin{itemize}
-			\item Longitudinal: $p = 2 n \hbar k$
-			\item Transversal: $p = n \hbar k$
+			\item Atoms can have momenta of $2 n \hbar k$
+			\item The more we pump, the more photons we will get
 		\end{itemize}
-	\item The more we pump, the more photons we will get
-	\item Abrupt self-organization with transversal pumping
+	\item Transversal pumping:
+		\begin{itemize}
+			\item Atoms can have momenta of $n \hbar k$
+			\item Abrupt self-organization with transversal pumping
+		\end{itemize}
 \end{itemize}
 \end{frame}
 
-\section{Setting up the simulation (4 min)}
+\section{Setting up the simulation}
 
 \begin{frame}
 \frametitle{The Julia language and QuantumOptics.jl}
 \begin{itemize}
 	\item High-performance languages like C, Fortran cumbersome to program
-	\item Julia: high level convenience, low-level performance \cite{julialang}
+	\item Julia: promises high level convenience, low-level performance \cite{julialang}
 	\item How to program it into computer?
 	\begin{itemize}
 		\item Starting from scratch: redundant
@@ -201,31 +248,33 @@ Paper: Self-organization of a Bose-Einstein condensate in an optical cavity \cit
 
 \begin{frame}
 \frametitle{Code snippet: Longitudinal pump}
-\vspace{-2em}
+\vspace{-1em}
+Here: Calculate longitudinal pump Hamiltonian ground state
+\vspace{-0.5em}
 \begin{figure}
 \centering
 \includegraphics[width=1\textwidth]{images/code_screenshot.png}
 \end{figure}
 \end{frame}
 
-\section{Results and Discussion (10 min)}
+\section{Results and Discussion}
 
 
 \begin{frame}
-\frametitle{Position wave function densities}
-\vspace{-1em}
+\frametitle{Position probability densities}
+\vspace{-1.5em}
 \begin{figure}
 \centering
 \includegraphics[width=1\textwidth]{images/dens_long.pdf}
-\vspace*{-7mm}
-\caption{Longitudinal.}
+\vspace*{-11mm}
+\caption{Longitudinal pump, $\eta = 30 \, \omega_\text{r}$.}
 \end{figure}
 \vspace{-1em}
 \begin{figure}
 \centering
 \includegraphics[width=1\textwidth]{images/dens_trans.pdf}
-\vspace*{-7mm}
-\caption{Transversal.}
+\vspace*{-11mm}
+\caption{Transversal pump, $\eta = 10 \, \omega_\text{r}$.}
 \end{figure}
 \end{frame}
 
@@ -259,14 +308,14 @@ $\vdots$ &             &
 \centering
 \includegraphics[width=.9\textwidth]{images/mom_long.pdf}
 \vspace*{-6mm}
-\caption{Longitudinal.}
+\caption{Longitudinal pump.}
 \end{figure}
 \vspace{-2em}
 \begin{figure}
 \centering
 \includegraphics[width=.9\textwidth]{images/mom_trans.pdf}
 \vspace*{-6mm}
-\caption{Transversal.}
+\caption{Transversal pump.}
 \end{figure}
 \end{frame}
 
@@ -277,15 +326,26 @@ $\vdots$ &             &
 \centering
 \includegraphics[width=.9\textwidth]{images/pho_dens_long.pdf}
 \vspace*{-6mm}
-\caption{Longitudinal.}
+\caption{Longitudinal pump.}
 \end{figure}
 \vspace{-2em}
 \begin{figure}
 \centering
 \includegraphics[width=.9\textwidth]{images/pho_dens_trans.pdf}
 \vspace*{-6mm}
-\caption{Transversal.}
+\caption{Transversal pump.}
 \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Husimi Q representation}
+Way to visualize photon state $|\alpha \rangle$:
+\begin{align}
+Q(\alpha) = \frac{1}{\pi} \langle \alpha | \rho | \alpha \rangle,
+\end{align}where $\rho$ is the density operator
+\begin{align}
+\rho = |\psi \rangle \langle \psi |.
+\end{align}
 \end{frame}
 
 \begin{frame}
@@ -294,65 +354,56 @@ $\vdots$ &             &
 \begin{figure}
 \centering
 \includegraphics[width=.9\textwidth]{images/qfunc_long.pdf}
-\vspace*{-3mm}
-\caption{Longitudinal.}
+\vspace*{-4mm}
+\caption{Longitudinal pump.}
 \end{figure}
 \vspace{-2em}
 \begin{figure}
 \centering
 \includegraphics[width=.9\textwidth]{images/qfunc_trans.pdf}
-\vspace*{-3mm}
-\caption{Transversal.}
+\vspace*{-4mm}
+\caption{Transversal pump.}
 \end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Breaking the symmetry}
+\frametitle{Phase transition and symmetry breaking}
 \begin{columns}
 \column{0.5\textwidth}
 \begin{figure}
 \centering
 \includegraphics[width=1\textwidth]{images/theta_long.pdf}
 \vspace*{-10mm}
-\caption{Longitudinal.}
+\caption{Longitudinal pump.}
 \end{figure}
 \column{0.5\textwidth}
 \begin{figure}
 \centering
 \includegraphics[width=1\textwidth]{images/theta_trans.pdf}
 \vspace*{-10mm}
-\caption{Transversal.}
+\caption{Transversal pump.}
 \end{figure}
 \end{columns}
 \end{frame}
 
-\section{Recap / Conclusion (2 min)}
+\section{Recap / Conclusion}
 
 \begin{frame}
 \frametitle{Recap}
 What we discussed in this presentation...
 \begin{itemize}
-	\item Why are we doing quantum simulations and how
-		\begin{itemize}
-			\item Most promising for now: Analog quantum simulations
-		\end{itemize}
-	\item Arrange atoms in lattice to simulate solid
-		\begin{itemize}
-			\item Use laser to trap atoms
-			\item Make use of cavity
-			\item Transversal pumping
-		\end{itemize}
-	\item Does our theoretical model make sense $\rightarrow$ Simulations
-		\begin{itemize}
-			\item Atoms localized in "valleys" of potential
-			\item Specific momenta with longitudinal, transversal pump
-			\item More pumping $\rightarrow$ More photons
-			\item Abrupt self-organization with transversal pumping
-		\end{itemize}
+	\item Set up model to arrange atoms in a lattice
+	\begin{itemize}
+		\item Use light field
+		\item Atom-light field interaction in cavity
+		\item Different ways to pump: longitudinally, transversally
+	\end{itemize}
+	\item Obtained Hamiltonians, discussed Properties
+	\item Simulation: Ground state of Hamiltonians
 \end{itemize}
 \end{frame}
 
-\section{Special Thanks (1 min)}
+\section{Special Thanks}
 
 \begin{frame}
 \frametitle{Special Thanks}

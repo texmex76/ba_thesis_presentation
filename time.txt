@@ -1,0 +1,9 @@
+# Time for slides
+
+- Introduction / Motivation (4 min)
+- Setting up our model (11 min)
+- Setting up the simulation (4 min)
+- Results and Discussion (8 min)
+- Recap / Conclusion (2 min)
+- Special Thanks (1 min)
+- References (0 min)
